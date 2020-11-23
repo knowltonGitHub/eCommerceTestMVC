@@ -1,0 +1,111 @@
+﻿@model eCommerceGitHub.Models.UsersTable
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+
+</div>
+
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{
+    <div class="row">
+
+
+        @*Login Dialog*@
+        <div class="modal fade" tabindex="-1" id="loginModal"
+             data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header login-header-color">
+                        <h4 class="modal-title"> -- </h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="newuser">
+                            <div class="form-group">
+                                @Html.Label("First Name")
+                                @Html.TextBox("First Name", "FirstName", new { @class = "form-input" })
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Last Name")
+                                @Html.TextBox("Last Name", "LastName", new { @class = "form-input" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("User Name")
+                            @Html.TextBox("User Name", "UserEmail", new { @class = "form-input" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Password")
+                            @Html.TextBox("Password", "UserPassword", new {type="password", @class = "form-input" })
+                        </div>                     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary button button4">
+                            @Html.ActionLink("Register", "Register",  "Home")</button>
+                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //dev tools verify that jQuery loaded
+        console.log("onload");
+
+        $(":submit").click(function (e) {
+            console.log("on submit click");
+            $("body").css("background-color", "Red");
+        });
+
+        //If user clicks "Login" menu item, open the Login dialog
+        $("a.menuLogin").click(function (e) {
+            console.log("on login click");
+            $("#loginModal").modal('show');
+            $("h4.modal-title").text("User Login");
+            $("div.newuser").hide();
+            $(":submit").text("Login");
+            console.log("ended");
+            e.preventDefault();
+        });
+
+        //If user clicks "Register" menu item, open the Register dialog
+        $("a.menuRegister").click(function (e) {
+            console.log("on register click");
+            $("#loginModal").modal('show');
+            $("h4.modal-title").text("Register New User");
+            $("div.newuser").show();
+            $(":submit").text("Register");
+            console.log("ended");
+            e.preventDefault();
+        });
+
+        //Hide Login dialog
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+
+        //Underline menu items on mouseover, clear on mouseleave
+        $("a.nav-link").hover(function () {
+            $(this).css("text-decoration", "underline");
+        }, function () {
+            $(this).css("text-decoration", "none");
+        });
+    });
+</script>

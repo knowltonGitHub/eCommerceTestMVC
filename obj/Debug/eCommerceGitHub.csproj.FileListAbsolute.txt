@@ -1,0 +1,2 @@
+C:\eCommerceGitHub\obj\Debug\eCommerceGitHub.csproj.CoreCompileInputs.cache
+C:\eCommerceGitHub\obj\Debug\eCommerceGitHub.csprojAssemblyReference.cache
